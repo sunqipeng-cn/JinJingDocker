@@ -1,0 +1,16 @@
+services:
+  jjz:
+    build: .
+    image: jjz-renewer:latest
+    container_name: jjz-renewer
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Shanghai
+    # 纯定时任务，不开端口、不需要持久化目录
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
